@@ -1,0 +1,30 @@
+﻿@using WebCalc.Controllers;
+@{
+    ViewBag.Title = "Index";
+}
+
+@Scripts.Render("~/scripts/jquery-3.1.1.js")
+
+<div id="here" align="center">
+    <h2>Calculator</h2>
+
+    
+    @using (Ajax.BeginForm("Index", new AjaxOptions { UpdateTargetId = "here", InsertionMode = InsertionMode.Replace }))
+    {
+        <input id="x" type="text" name="x" class="form-control" value="@ViewBag.x" placeholder="Input number "  />
+
+        @Html.DropDownList("_operator",
+            EnumHelper.GetSelectList(typeof(Operator)),
+            "Select Operator",
+            new { @class = "form-control" }
+        )
+      
+
+        <input id="y" type="text" name="y" class="form-control" value="@ViewBag.y" placeholder="Input number "  />
+        <button type="submit" style="display: block; width: 280px;">=</button>
+        
+    }
+        <input id="results" align="center" name="results" readonly class="form-control" value="@ViewBag.result" />
+    
+</div>
+
